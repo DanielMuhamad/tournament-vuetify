@@ -1,25 +1,54 @@
 <template>
     <div>
-        <DefaultContainer></DefaultContainer>
-        <v-content>
-            <v-container fluid>
-                <v-layout align-center justify-center>
-                    <v-flex xs4>
-                        <v-card>
-                            <v-card-text>
-                                Sign in to your account!
-                                <v-form>
-                                    <v-text-field v-model="email" type="email" label="Email"></v-text-field>
-                                    <v-text-field v-model="password" type="password" label="Password"></v-text-field>
-                                </v-form>
-                                <v-btn @click="signIn()">Sign In</v-btn> <br>
-                                <span>Don't have an account ? <router-link to="/sign-up">Sign Up</router-link></span>
-                            </v-card-text>
-                        </v-card>
-                    </v-flex>
-                </v-layout>
-            </v-container>
-        </v-content>
+        
+    <v-navigation-drawer persistent :mini-variant="miniVariant" :clipped="clipped" v-model="drawer" enable-resize-watcher fixed app>
+      <v-list>
+        <div align="center">
+          <a href="#">
+            <img src="../../assets/logo.png" alt="">
+          </a>
+        </div>
+        <v-list-tile value="true" v-for="(item, i) in items" :key="i" :to="item.path">
+          <v-list-tile-action>
+            <v-icon v-html="item.icon"></v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title v-text="item.title"></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-toolbar app :clipped-left="clipped">
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-btn icon @click.stop="miniVariant = !miniVariant">
+        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
+      </v-btn>
+            
+      <!-- <v-toolbar-title v-text="title"></v-toolbar-title> -->
+      <v-spacer></v-spacer>
+      <!-- <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+        <v-icon>menu</v-icon>
+      </v-btn> -->
+      <v-btn @click="signOut()"><v-icon>power_settings_new</v-icon>Logout</v-btn>
+    </v-toolbar>
+
+      <router-view></router-view>
+
+    <!-- <v-navigation-drawer temporary :right="right" v-model="rightDrawer" fixed app>
+      <v-list>
+        <v-list-tile @click="right = !right">
+          <v-list-tile-action>
+            <v-icon>compare_arrows</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer> -->
+    <v-footer :fixed="fixed" app>
+      <span>&copy; 2017</span>
+    </v-footer>
     </div>
 </template>
 
@@ -36,26 +65,26 @@ export default {
   },
   data() {
     return {
-      email: "",
-      password: ""
+      clipped: false,
+      drawer: true,
+      fixed: false,
+      items: [
+        {
+          path: "/dashboard",
+          icon: "dashboard",
+          title: "Dashboard"
+        },
+        {
+          path: "/setup",
+          icon: "build",
+          title: "Setup"
+        }
+      ],
+      miniVariant: false,
+      right: true,
+      rightDrawer: false,
+      title: "Vuetify.js"
     };
-  },
-
-  methods: {
-    signIn: function() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(
-          function(user) {
-            router.replace("dashboard");
-          },
-
-          function(err) {
-            alert("Oops. " + err.message);
-          }
-        );
-    }
   }
 };
 </script>

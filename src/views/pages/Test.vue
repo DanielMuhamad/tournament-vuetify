@@ -6,14 +6,14 @@
                     <v-flex xs4>
                         <v-card>
                             <v-card-text>
-                               I'ts Working on Setup:)<br>
-                               I'ts Working on Setup:)<br>
-                               I'ts Working on Setup:)<br>
-                               I'ts Working on Setup:)<br>
-                               I'ts Working on Setup:)<br>
-                               I'ts Working on Setup:)<br>
-                               I'ts Working on Setup:)<br>
-                               I'ts Working on Setup:)<br>
+                               I'ts Working on Test:)<br>
+                               I'ts Working on Test:)<br>
+                               I'ts Working on Test:)<br>
+                               I'ts Working on Test:)<br>
+                               I'ts Working on Test:)<br>
+                               I'ts Working on Test:)<br>
+                               I'ts Working on Test:)<br>
+                               I'ts Working on Test:)<br>
                             </v-card-text>
                         </v-card>
                     </v-flex>

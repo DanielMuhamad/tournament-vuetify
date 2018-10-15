@@ -34,6 +34,6 @@ export default {
       email: "",
       password: ""
     };
-  },
+  }
 };
 </script>

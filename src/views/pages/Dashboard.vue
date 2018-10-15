@@ -78,6 +78,11 @@ export default {
           path: "/setup",
           icon: "build",
           title: "Setup"
+        },
+        {
+          path: "/user",
+          icon: "person",
+          title: "User"
         }
       ],
       miniVariant: false,
